@@ -20,10 +20,10 @@ data = [
     ,
     {
         id:3,
-        name: "BOWL",
+        name: "CUPS",
         img: 'src="img/bowls.jpg" alt="bowls"',
-        price: 30.99,
-        description: "Pottery Bowls"
+        price: 14.99,
+        description: "Pottery Cups"
     }
 ]
 let carrito = [];
