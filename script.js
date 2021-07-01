@@ -25,6 +25,14 @@ data = [
         price: 14.99,
         description: "Pottery Cups"
     }
+    ,
+    {
+        id:3,
+        name: "POT",
+        img: 'src="img/bowls.jpg" alt="bowls"',
+        price: 7.99,
+        description: "Flowerpot"
+    }
 ]
 let carrito = [];
 let total = 0;
@@ -45,7 +53,7 @@ function renderizarProductos(){
     data.forEach((info) => {
         // struttura
 const cards = document.createElement('div');
-cards.classList.add('card', 'col-sm-4');
+cards.classList.add('card', 'col-sm-4', "m-2");
         // body
 const cardsCardBody = document.createElement('div');
 cardsCardBody.classList.add('card-body');
