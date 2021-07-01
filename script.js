@@ -6,14 +6,14 @@ data = [
     {
         id:1,
         name: "JUG",
-        img: 'src="img/jugs.jpg" alt="jug"',
+        img: 'img/jugs.jpg',
         price: 24.99,
         description: "Pottery jugs"
     },
     {
         id:2,
         name: "BOWL",
-        img: 'src="img/bowls.jpg" alt="bowls"',
+        img: 'img/bowls.jpg',
         price: 30.99,
         description: "Pottery Bowls"
     }
@@ -21,7 +21,7 @@ data = [
     {
         id:3,
         name: "CUPS",
-        img: 'src="img/bowls.jpg" alt="bowls"',
+        img: 'img/cups.jpg',
         price: 14.99,
         description: "Pottery Cups"
     }
@@ -29,7 +29,7 @@ data = [
     {
         id:3,
         name: "POT",
-        img: 'src="img/bowls.jpg" alt="bowls"',
+        img: 'img/bowls.jpg',
         price: 7.99,
         description: "Flowerpot"
     }
@@ -63,7 +63,7 @@ cardTitle.classList.add('card-title');
 cardTitle.textContent = info.name;
         // Img
 const cardImg = document.createElement('img');
-cardImg.classList.add('img');
+cardImg.classList.add('img', 'col-12');
 cardImg.setAttribute('src', info.img);
         // description
 const cardDescription = document.createElement('p');
