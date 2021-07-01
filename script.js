@@ -65,6 +65,10 @@ cardTitle.textContent = info.name;
 const cardImg = document.createElement('img');
 cardImg.classList.add('img');
 cardImg.setAttribute('src', info.img);
+        // description
+const cardDescription = document.createElement('p');
+cardDescription.classList.add('card-text');
+cardDescription.textContent = info.description;
         // price
 const cardPrice = document.createElement('p');
 cardPrice.classList.add('card-text');
@@ -79,6 +83,7 @@ cardButton.addEventListener('click', addProductstoCart);
 // Insert the info
 cardsCardBody.appendChild(cardImg);
 cardsCardBody.appendChild(cardTitle);
+cardsCardBody.appendChild(cardDescription);
 cardsCardBody.appendChild(cardPrice);
 cardsCardBody.appendChild(cardButton);
 cards.appendChild(cardsCardBody);
