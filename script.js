@@ -31,11 +31,11 @@ let total = 0;
 const DOMitems = document.querySelector('#items');
 const DOMcarrito = document.querySelector('#carrito');
 const DOMtotal = document.querySelector('#total');
-const DOMbotonVaciar = document.querySelector('#boton-vaciar');
-const miLocalStorage = window.localStorage;
+const DOMdeleteButton = document.querySelector('#boton-vaciar');
+
 
 // start
-renderizarCarrito();
+renderizarCart();
 renderizarProductos();
 
 // Functions
@@ -79,7 +79,7 @@ DOMitems.appendChild(cards);
 }
 
 /*** Dibuja todos los productos guardados en el carrito */
-      function renderizarCarrito() {
+      function renderizarCart() {
         // Vacio todo el html
         DOMcarrito.textContent = '';
         // Quito los duplicados
@@ -100,7 +100,17 @@ DOMitems.appendChild(cards);
              const cards = document.createElement('li');
              cards.classList.add('list-group-item', 'text-right', 'mx-2');
              cards.textContent = `${numeroUnidadesItem} x ${miItem[0].name} - ${miItem[0].price}€`;
-        })
+              // Boton Delete
+              const deleteButton = document.createElement('button');
+              deleteButton.classList.add('btn', 'btn-danger', 'mx-5');
+              deleteButton.textContent = 'X';
+              deleteButton.style.marginLeft = '1rem';
+              deleteButton.dataset.item = item;
+              deleteButton.addEventListener('click', deleteItemCart);
+              // Mezclamos nodos
+              cards.appendChild(deleteButton);
+              DOMcarrito.appendChild(cards);
+        });
     }
 //***Event to add producto al carrito */
 function addProductstoCart(evento){
@@ -110,8 +120,7 @@ carrito.push(evento.target.getAttribute('marcador'))
 calcularTotal();
 // actualizar Cart
 renderizarCart();
-// actualizar LocalStorage
-guardarCartEnLocalStorage();
+
 }
 
 function calcularTotal(){
@@ -124,15 +133,18 @@ function calcularTotal(){
     });
     DOMtotal.textContent = total.toFixed(2);
 }
-function guardarCarritoEnLocalStorage () {
-    miLocalStorage.setItem('carrito', JSON.stringify(carrito));
-}
+function deleteItemCart(evento) {
+    // Obtenemos el producto ID que hay en el boton pulsado
+    const id = evento.target.dataset.item;
+    // Borramos todos los productos
+    carrito = carrito.filter((carritoId) => {
+        return carritoId !== id;
+    });
+    // volvemos a renderizar
+    renderizarCart();
+    // Calculamos de nuevo el precio
+    calcularTotal();
+    
 
-function guardarCartEnLocalStorage() {
-    // ¿Existe un carrito previo guardado en LocalStorage?
-    if (miLocalStorage.getItem('carrito') !== null) {
-        // Carga la información
-        carrito = JSON.parse(miLocalStorage.getItem('carrito'));
-    }
 }
 }
