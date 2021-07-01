@@ -48,7 +48,7 @@ const cards = document.createElement('div');
 cards.classList.add('card', 'col-sm-4');
         // body
 const cardsCardBody = document.createElement('div');
-cardsCarBody.classList.add('card-body');
+cardsCardBody.classList.add('card-body');
         //card title
 const cardTitle = document.createElement('h5');
 cardTitle.classList.add('card-title');
@@ -66,6 +66,7 @@ const cardButton = document.createElement('button');
 cardButton.classList.add('btn', 'btn-secondary');
 cardButton.textContent = '+';
 cardButton.setAttribute('marcador', info.id);
+cardButton.addEventListener('click', addProductstoCart);
 
 // Insert the info
 cardsCardBody.appendChild(cardImg);
@@ -77,9 +78,7 @@ DOMitems.appendChild(cards);
 });
 }
 
-     /**
-            * Dibuja todos los productos guardados en el carrito
-            */
+/*** Dibuja todos los productos guardados en el carrito */
       function renderizarCarrito() {
         // Vacio todo el html
         DOMcarrito.textContent = '';
@@ -92,6 +91,48 @@ DOMitems.appendChild(cards);
                 // ¿Coincide las id? Solo puede existir un caso
                 return itemData.id === parseInt(item);
             });
+              // Cuenta el número de veces que se repite el producto
+              const numeroUnidadesItem = carrito.reduce((total, itemId) => {
+                // ¿Coincide las id? Incremento el contador, en caso contrario no mantengo
+                return itemId === item ? total += 1 : total;
+            }, 0);
+             // Creamos el nodo del item del carrito
+             const cards = document.createElement('li');
+             cards.classList.add('list-group-item', 'text-right', 'mx-2');
+             cards.textContent = `${numeroUnidadesItem} x ${miItem[0].name} - ${miItem[0].price}€`;
         })
     }
+//***Event to add producto al carrito */
+function addProductstoCart(evento){
+// add card to Cart
+carrito.push(evento.target.getAttribute('marcador'))
+// Calculo el total
+calcularTotal();
+// actualizar Cart
+renderizarCart();
+// actualizar LocalStorage
+guardarCartEnLocalStorage();
+}
+
+function calcularTotal(){
+    total = 0;
+    carrito.forEach((item)=>{
+        const miItem = data.filter((itemData)=>{
+            return itemData.id === parseInt(item);
+        });
+        total = total + miItem[0].price;
+    });
+    DOMtotal.textContent = total.toFixed(2);
+}
+function guardarCarritoEnLocalStorage () {
+    miLocalStorage.setItem('carrito', JSON.stringify(carrito));
+}
+
+function guardarCartEnLocalStorage() {
+    // ¿Existe un carrito previo guardado en LocalStorage?
+    if (miLocalStorage.getItem('carrito') !== null) {
+        // Carga la información
+        carrito = JSON.parse(miLocalStorage.getItem('carrito'));
+    }
+}
 }
