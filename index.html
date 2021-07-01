@@ -10,7 +10,7 @@
   </head>
   <body>     
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand text-white-50" href="#">Le Ceramiche di Alice</a>
+        <a class="navbar-brand text-white" href="#">Le Ceramiche di Alice</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -18,16 +18,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home</a>
+              <a class="nav-link text-white" href="#">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">About me</a>
+              <a class="nav-link text-white" href="#">About me</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Shop</a>
+                <a class="nav-link text-white" href="#">Shop</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Courses</a>
+                <a class="nav-link text-white" href="#">Courses</a>
               </li>           
           </ul>         
         </div>
@@ -89,12 +89,9 @@
     </div>
   </div>
       </nav>
-      <!--Slider con 4 imagenes-->
-      <!---Container responsive-->
-  
-      <main class="container-fluid my-5" class=" d-block h-80">
+      <main class="container-fluid my-3">
          <div class="row">
-             <div class="col-sm-6 ">
+             <div class="col-sm-6">
                  <!--Carousel-->
                 <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
@@ -142,26 +139,38 @@
                     <!--Flechas anterior y sucesivo-->
                     <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
                       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="sr-only">Previous</span>
+                      <!-- <span class="sr-only">Previous</span> -->
                     </a>
                     <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
                       <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="sr-only">Next</span>
+                    <!--   <span class="sr-only">Next</span> -->
                     </a>              
                 </div>
               </div>
                 <div class="col-sm-6 align-self-center text-center">
                   <h1><b>Homemade Ceramics</b></h1>
                   <h4 class="h4 mb-5">Unique Pottery</h4>
-                 <p class="font-italic">Alice is inspired by the idea that functional items can be beautiful,
-                    she intends for her ceramics to be used everyday and not just to be
-                    a decorative object. Behind each piece, there is a story. 
-                    The different stories are the heart of each piece and are what makes them special. 
-                   </p>
-                   <button type="button" class="btn btn-secondary btn-lg text-white" >Shop Ceramics</button>
                 </div>
                 
             </main>
+<!---Products Card-->
+<div class="container">
+    <div class="row">
+        <!-- Elementos generados a partir del JSON -->
+        <main id="items" class="col-sm-8 row"></main>
+        <!-- Carrito -->
+        <aside class="col-sm-4">
+            <h2>Carrito</h2>
+            <!-- Elementos del carrito -->
+            <ul id="carrito" class="list-group"></ul>
+            <hr>
+            <!-- Precio total -->
+            <p class="text-right">Total: <span id="total"></span>&euro;</p>
+            <button id="boton-vaciar" class="btn btn-danger">Vaciar</button>
+        </aside>
+    </div>
+</div>
+
          
     <!--- Footer-->
     
@@ -186,6 +195,7 @@
  
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="script.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
