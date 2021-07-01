@@ -78,7 +78,7 @@ cardPrice.textContent = info.price + '€';
         //Button
 const cardButton = document.createElement('button');
 cardButton.classList.add('btn', 'btn-secondary');
-cardButton.textContent = '+';
+cardButton.textContent = '+ ADD TO CART';
 cardButton.setAttribute('marcador', info.id);
 cardButton.addEventListener('click', addProductstoCart);
 
@@ -118,7 +118,7 @@ DOMitems.appendChild(cards);
               // Boton Delete
               const addItem = document.createElement('button');
               addItem.classList.add('btn', 'btn-danger', 'mx-5');
-              addItem.textContent = 'X';
+              addItem.textContent = 'X delete product';
               addItem.style.marginLeft = '1rem';
               addItem.dataset.item = item;
               addItem.addEventListener('click', deleteItemCart);
@@ -147,8 +147,6 @@ function calcularTotal(){
         });
         totalPrice = totalPrice + miItem[0].price;
         totalProducts = totalProducts + 1;
-        
-     
     });
     DOMtotal.textContent = totalPrice.toFixed(2);
     DOMtotalProduct.textContent = totalProducts;
