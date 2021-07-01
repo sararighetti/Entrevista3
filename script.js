@@ -117,7 +117,7 @@ DOMitems.appendChild(cards);
              cards.textContent = `${numeroUnidadesItem} x ${miItem[0].name} - ${miItem[0].price}€`;
               // Boton Delete
               const addItem = document.createElement('button');
-              addItem.classList.add('btn', 'btn-danger', 'mx-5');
+              addItem.classList.add('btn', 'btn-danger');
               addItem.textContent = 'X delete product';
               addItem.style.marginLeft = '1rem';
               addItem.dataset.item = item;
