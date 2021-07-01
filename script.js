@@ -29,7 +29,7 @@ data = [
     {
         id:3,
         name: "POT",
-        img: 'img/bowls.jpg',
+        img: 'img/pot.jpg',
         price: 7.99,
         description: "Flowerpot"
     }
@@ -39,16 +39,18 @@ let total = 0;
 const DOMitems = document.querySelector('#items');
 const DOMcarrito = document.querySelector('#carrito');
 const DOMtotal = document.querySelector('#total');
+const DOMtotalProduct = document.querySelector('#totalProducts');
 const DOMdeleteButton = document.querySelector('#boton-vaciar');
 
 
 // start
 renderizarCart();
-renderizarProductos();
+render_list_of_items();
+calcularTotal();
 
 // Functions
 
-function renderizarProductos(){
+function render_list_of_items(){
     // dibuja los productos a partir de la base de datos
     data.forEach((info) => {
         // struttura
@@ -114,14 +116,14 @@ DOMitems.appendChild(cards);
              cards.classList.add('list-group-item', 'text-right', 'mx-2');
              cards.textContent = `${numeroUnidadesItem} x ${miItem[0].name} - ${miItem[0].price}€`;
               // Boton Delete
-              const deleteButton = document.createElement('button');
-              deleteButton.classList.add('btn', 'btn-danger', 'mx-5');
-              deleteButton.textContent = 'X';
-              deleteButton.style.marginLeft = '1rem';
-              deleteButton.dataset.item = item;
-              deleteButton.addEventListener('click', deleteItemCart);
+              const addItem = document.createElement('button');
+              addItem.classList.add('btn', 'btn-danger', 'mx-5');
+              addItem.textContent = 'X';
+              addItem.style.marginLeft = '1rem';
+              addItem.dataset.item = item;
+              addItem.addEventListener('click', deleteItemCart);
               // Mezclamos nodos
-              cards.appendChild(deleteButton);
+              cards.appendChild(addItem);
               DOMcarrito.appendChild(cards);
         });
     }
@@ -137,14 +139,19 @@ renderizarCart();
 }
 
 function calcularTotal(){
-    total = 0;
+    totalPrice = 0;
+    totalProducts = 0;
     carrito.forEach((item)=>{
         const miItem = data.filter((itemData)=>{
             return itemData.id === parseInt(item);
         });
-        total = total + miItem[0].price;
+        totalPrice = totalPrice + miItem[0].price;
+        totalProducts = totalProducts + 1;
+        
+     
     });
-    DOMtotal.textContent = total.toFixed(2);
+    DOMtotal.textContent = totalPrice.toFixed(2);
+    DOMtotalProduct.textContent = totalProducts;
 }
 function deleteItemCart(evento) {
     // Obtenemos el producto ID que hay en el boton pulsado
@@ -157,7 +164,14 @@ function deleteItemCart(evento) {
     renderizarCart();
     // Calculamos de nuevo el precio
     calcularTotal();
-    
-
 }
+
+function deleteCart() {
+    // Limpiamos los productos guardados
+    carrito = [];
+    renderizarCart();
+    calcularTotal();
+}
+// Evento 
+DOMdeleteButton.addEventListener('click', deleteCart);
 }
