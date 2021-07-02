@@ -127,8 +127,8 @@ DOMitems.appendChild(cards);
               addItemButton.classList.add('btn', 'btn-danger');
               addItemButton.textContent = '+ Add';
               addItemButton.style.marginLeft = '1rem';
-              addItemButton.dataset.item = item;
-              addItemButton.addEventListener('click', removeItem);          
+              addItemButton.setAttribute('marcador', item);
+              addItemButton.addEventListener('click', addProductstoCart);          
               // Mezclamos nodos
               cards.appendChild(addRemoveItem);
               cards.appendChild(addItemButton);
@@ -170,6 +170,7 @@ function removeItem(evento) {
     addItemtoCart();
     // Calculamos de nuevo el precio
     calcularTotal();
+
 }
 
 function deleteCart() {
