@@ -71,7 +71,7 @@ function render_list_of_items(){
         // price
     const cardPrice = document.createElement('p');
     cardPrice.classList.add('card-text');
-    cardPrice.textContent = info.price + '€';
+    cardPrice.textContent = 'Price: ' + info.price + '€';
         //Button
     const cardButton = document.createElement('button');
     cardButton.classList.add('btn', 'btn-secondary');
