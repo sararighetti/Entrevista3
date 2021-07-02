@@ -20,14 +20,14 @@ data = [
     ,
     {
         id:3,
-        name: "CUPS",
+        name: "CUP",
         img: 'img/cups.jpg',
         price: 14.99,
         description: "Pottery Cups"
     }
     ,
     {
-        id:3,
+        id:4,
         name: "POT",
         img: 'img/pot.jpg',
         price: 7.99,
@@ -44,7 +44,7 @@ const DOMdeleteButton = document.querySelector('#boton-vaciar');
 
 
 // start
-renderizarCart();
+addItmetoCart();
 render_list_of_items();
 calcularTotal();
 
@@ -94,7 +94,7 @@ DOMitems.appendChild(cards);
 }
 
 /*** Dibuja todos los productos guardados en el carrito */
-      function renderizarCart() {
+      function addItmetoCart() {
         // Vacio todo el html
         DOMcarrito.textContent = '';
         // Quito los duplicados
@@ -118,8 +118,8 @@ DOMitems.appendChild(cards);
               // Boton Delete
               const addItem = document.createElement('button');
               addItem.classList.add('btn', 'btn-danger');
-              addItem.textContent = 'X delete product';
-              addItem.style.marginLeft = '1rem';
+              addItem.textContent = 'delete';
+              addItem.style.marginLeft = '2rem';
               addItem.dataset.item = item;
               addItem.addEventListener('click', deleteItemCart);
               // Mezclamos nodos
@@ -134,7 +134,7 @@ carrito.push(evento.target.getAttribute('marcador'))
 // Calculo el total
 calcularTotal();
 // actualizar Cart
-renderizarCart();
+addItmetoCart();
 
 }
 
@@ -159,7 +159,7 @@ function deleteItemCart(evento) {
         return carritoId !== id;
     });
     // volvemos a renderizar
-    renderizarCart();
+    addItmetoCart();
     // Calculamos de nuevo el precio
     calcularTotal();
 }
@@ -167,7 +167,7 @@ function deleteItemCart(evento) {
 function deleteCart() {
     // Limpiamos los productos guardados
     carrito = [];
-    renderizarCart();
+    addItmetoCart();
     calcularTotal();
 }
 // Evento 
