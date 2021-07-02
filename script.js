@@ -97,6 +97,10 @@ DOMitems.appendChild(cards);
       function addItemtoCart() {
         // Vacio todo el html
         DOMcarrito.textContent = '';
+        const DeleteAllButton = document.createElement('button');
+        DeleteAllButton.classList.add('btn', 'btn-danger' , 'm-3')
+        DeleteAllButton.textContent = 'Remove all Products';
+        DeleteAllButton.addEventListener('click', deleteCart);  
         // Quito los duplicados
         const carritoSinDuplicados = [...new Set(carrito)];
         // Generamos los Nodos a partir de carrito
@@ -121,15 +125,15 @@ DOMitems.appendChild(cards);
              imgCards.textContent =` ${miItem[0].img}`;
               // Boton Delete item
               const addRemoveItem = document.createElement('button');
-              addRemoveItem.classList.add('btn', 'btn-danger', 'm-4');
-              addRemoveItem.textContent = 'x Remove';
+              addRemoveItem.classList.add('btn', 'btn-secondary', 'm-4');
+              addRemoveItem.textContent = 'Remove';
               addRemoveItem.style.marginLeft = '1rem';
               addRemoveItem.dataset.item = item;
               addRemoveItem.addEventListener('click', removeItem);   
               // Boton add Item
               const addItemButton = document.createElement('button');
-              addItemButton.classList.add('btn', 'btn-danger', 'm-4');
-              addItemButton.textContent = '+ Add';
+              addItemButton.classList.add('btn', 'btn-secondary');
+              addItemButton.textContent = 'Add';
               addItemButton.style.marginLeft = '1rem';
               addItemButton.setAttribute('marcador', item);
               addItemButton.addEventListener('click', addProductstoCart);          
@@ -138,6 +142,7 @@ DOMitems.appendChild(cards);
               cards.appendChild(addRemoveItem);
               cards.appendChild(addItemButton);
               DOMcarrito.appendChild(cards);
+              DOMcarrito.appendChild(DeleteAllButton);
         });
     }
 //***Event to add producto al carrito */
@@ -187,5 +192,5 @@ function deleteCart() {
 
 
 // Evento 
-DOMdeleteButton.addEventListener('click', deleteCart);
+/* DOMdeleteButton.addEventListener('click', deleteCart); */
 }
