@@ -114,22 +114,27 @@ DOMitems.appendChild(cards);
              // Creamos el nodo del item del carrito
              const cards = document.createElement('li');
              cards.classList.add('list-group-item', 'text-right', 'mx-2');
-             cards.textContent = `${numeroUnidadesItem} x ${miItem[0].name} - ${miItem[0].price}€`;
+             cards.textContent = ` ${numeroUnidadesItem} x ${miItem[0].name} - ${miItem[0].price}€`;
+             const imgCards= document.createElement('img');
+             imgCards.classList.add('img', 'col-4', 'm-2');
+             imgCards.setAttribute('src', miItem[0].img);
+             imgCards.textContent =` ${miItem[0].img}`;
               // Boton Delete item
               const addRemoveItem = document.createElement('button');
-              addRemoveItem.classList.add('btn', 'btn-danger');
+              addRemoveItem.classList.add('btn', 'btn-danger', 'm-4');
               addRemoveItem.textContent = 'x Remove';
               addRemoveItem.style.marginLeft = '1rem';
               addRemoveItem.dataset.item = item;
               addRemoveItem.addEventListener('click', removeItem);   
               // Boton add Item
               const addItemButton = document.createElement('button');
-              addItemButton.classList.add('btn', 'btn-danger');
+              addItemButton.classList.add('btn', 'btn-danger', 'm-4');
               addItemButton.textContent = '+ Add';
               addItemButton.style.marginLeft = '1rem';
               addItemButton.setAttribute('marcador', item);
               addItemButton.addEventListener('click', addProductstoCart);          
               // Mezclamos nodos
+              cards.appendChild(imgCards); 
               cards.appendChild(addRemoveItem);
               cards.appendChild(addItemButton);
               DOMcarrito.appendChild(cards);
