@@ -44,7 +44,7 @@ const DOMdeleteButton = document.querySelector('#boton-vaciar');
 
 
 // start
-addItmetoCart();
+addItemtoCart();
 render_list_of_items();
 calcularTotal();
 
@@ -94,7 +94,7 @@ DOMitems.appendChild(cards);
 }
 
 /*** Dibuja todos los productos guardados en el carrito */
-      function addItmetoCart() {
+      function addItemtoCart() {
         // Vacio todo el html
         DOMcarrito.textContent = '';
         // Quito los duplicados
@@ -115,15 +115,23 @@ DOMitems.appendChild(cards);
              const cards = document.createElement('li');
              cards.classList.add('list-group-item', 'text-right', 'mx-2');
              cards.textContent = `${numeroUnidadesItem} x ${miItem[0].name} - ${miItem[0].price}€`;
-              // Boton Delete
-              const addItem = document.createElement('button');
-              addItem.classList.add('btn', 'btn-danger');
-              addItem.textContent = 'delete';
-              addItem.style.marginLeft = '2rem';
-              addItem.dataset.item = item;
-              addItem.addEventListener('click', deleteItemCart);
+              // Boton Delete item
+              const addRemoveItem = document.createElement('button');
+              addRemoveItem.classList.add('btn', 'btn-danger');
+              addRemoveItem.textContent = 'x Remove';
+              addRemoveItem.style.marginLeft = '1rem';
+              addRemoveItem.dataset.item = item;
+              addRemoveItem.addEventListener('click', removeItem);   
+              // Boton add Item
+              const addItemButton = document.createElement('button');
+              addItemButton.classList.add('btn', 'btn-danger');
+              addItemButton.textContent = '+ Add';
+              addItemButton.style.marginLeft = '1rem';
+              addItemButton.dataset.item = item;
+              addItemButton.addEventListener('click', removeItem);          
               // Mezclamos nodos
-              cards.appendChild(addItem);
+              cards.appendChild(addRemoveItem);
+              cards.appendChild(addItemButton);
               DOMcarrito.appendChild(cards);
         });
     }
@@ -134,7 +142,7 @@ carrito.push(evento.target.getAttribute('marcador'))
 // Calculo el total
 calcularTotal();
 // actualizar Cart
-addItmetoCart();
+addItemtoCart();
 
 }
 
@@ -151,7 +159,7 @@ function calcularTotal(){
     DOMtotal.textContent = totalPrice.toFixed(2);
     DOMtotalProduct.textContent = totalProducts;
 }
-function deleteItemCart(evento) {
+function removeItem(evento) {
     // Obtenemos el producto ID que hay en el boton pulsado
     const id = evento.target.dataset.item;
     // Borramos todos los productos
@@ -159,7 +167,7 @@ function deleteItemCart(evento) {
         return carritoId !== id;
     });
     // volvemos a renderizar
-    addItmetoCart();
+    addItemtoCart();
     // Calculamos de nuevo el precio
     calcularTotal();
 }
@@ -167,9 +175,11 @@ function deleteItemCart(evento) {
 function deleteCart() {
     // Limpiamos los productos guardados
     carrito = [];
-    addItmetoCart();
+    addItemtoCart();
     calcularTotal();
 }
+
+
 // Evento 
 DOMdeleteButton.addEventListener('click', deleteCart);
 }
