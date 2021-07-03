@@ -144,7 +144,7 @@ function addItemtoCart() {
 //***Agregar producto al carrito desde la card de producto */
 function addProductstoCart(evento){
     // add card to Cart
-    carrito.push(evento.target.getAttribute('marcador'))
+    carrito.push(evento.target.getAttribute('marcador'));
     // Calculo el total
     calcularTotal();
     // actualizar Cart
@@ -165,16 +165,15 @@ function calcularTotal(){
     DOMtotalProduct.textContent = totalProducts;
 }
 function removeItem(evento) {
-    // Obtenemos el producto ID que hay en el boton pulsado
-    const id = evento.target.dataset.item;
-    // Borramos todos los productos
-    carrito = carrito.filter((carritoId) => {
-        return carritoId !== id;
-    });
-    // volvemos a renderizar
-    addItemtoCart();
-    // Calculamos de nuevo el precio
-    calcularTotal();
+     // Obtenemos el producto ID que hay en el boton pulsado
+     const id = evento.target.dataset.item;
+     // elimino el ultimo producto con aquel id
+     carrito.pop(id);
+     
+     // volvemos a renderizar
+     addItemtoCart();
+     // Calculamos de nuevo el precio
+     calcularTotal();
 }
 function deleteCart() {
     // Elimina todo los productos dal carrito
